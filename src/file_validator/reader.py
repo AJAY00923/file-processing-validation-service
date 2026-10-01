@@ -19,6 +19,8 @@ def read_customer_file(file_path):
         reader = csv.DictReader(file)
         actual_columns = set(reader.fieldnames) 
         missing_columns = expected_columns - actual_columns
+        if missing_columns:
+            raise ValueError(f"Missing required columns: {missing_columns}")
         for row in reader:
             records.append(row)
          
